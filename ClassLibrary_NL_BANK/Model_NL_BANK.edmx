@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NL_BankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACCTransactions">
+          <Key>
+            <PropertyRef Name="CTransID" />
+          </Key>
+          <Property Name="CTransID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CTransType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CAmount" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="CAccountNo" Type="nvarchar" MaxLength="25" />
+          <Property Name="CDateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BANK_INCOME">
+          <Key>
+            <PropertyRef Name="BANKID" />
+          </Key>
+          <Property Name="BANKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BANKFEE_ACCOUNT" Type="nvarchar" MaxLength="10" />
+          <Property Name="BALANCE_CHARGES" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="BankAccountMaster">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IBANAccountNo" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Customer_FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CAddress1" Type="nvarchar" MaxLength="50" />
+          <Property Name="CAddress2" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="CZipcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="CPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cemail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="AccDateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_FNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_LNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pwd" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="20" />
+          <Property Name="IBANAccountNo" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NL_Bank.dbo.V_ACCTransactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_ACCTransactions">
+          <Key>
+            <PropertyRef Name="CTransID" />
+            <PropertyRef Name="CTransType" />
+          </Key>
+          <Property Name="CTransID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CTransType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CAmount" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="CAccountNo" Type="nvarchar" MaxLength="25" />
+          <Property Name="CDateCreated" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NL_Bank.dbo.V_Bank_Income' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Bank_Income">
+          <Key>
+            <PropertyRef Name="BANKID" />
+          </Key>
+          <Property Name="BANKID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BANKFEE_ACCOUNT" Type="nvarchar" MaxLength="10" />
+          <Property Name="BALANCE_CHARGES" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NL_Bank.dbo.V_BankAccountMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_BankAccountMaster">
+          <Key>
+            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="IBANAccountNo" />
+          </Key>
+          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IBANAccountNo" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Customer_FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer_LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CAddress1" Type="nvarchar" MaxLength="50" />
+          <Property Name="CAddress2" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="CZipcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cemail" Type="nvarchar" MaxLength="50" />
+          <Property Name="CPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="AccDateCreated" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'NL_Bank.dbo.V_User' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="V_User">
+          <Property Name="USER_FNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="USER_LNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pwd" Type="nvarchar" MaxLength="50" />
+          <Property Name="Role" Type="nvarchar" MaxLength="20" />
+          <Property Name="IBANAccountNo" Type="nvarchar" MaxLength="25" />
+        </EntityType>-->
+        <EntityContainer Name="NL_BankModelStoreContainer">
+          <EntitySet Name="ACCTransactions" EntityType="Self.ACCTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BANK_INCOME" EntityType="Self.BANK_INCOME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankAccountMaster" EntityType="Self.BankAccountMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_ACCTransactions" EntityType="Self.V_ACCTransactions" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_ACCTransactions].[CTransID] AS [CTransID], 
+    [V_ACCTransactions].[CTransType] AS [CTransType], 
+    [V_ACCTransactions].[CAmount] AS [CAmount], 
+    [V_ACCTransactions].[CAccountNo] AS [CAccountNo], 
+    [V_ACCTransactions].[CDateCreated] AS [CDateCreated]
+    FROM [dbo].[V_ACCTransactions] AS [V_ACCTransactions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Bank_Income" EntityType="Self.V_Bank_Income" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Bank_Income].[BANKID] AS [BANKID], 
+    [V_Bank_Income].[BANKFEE_ACCOUNT] AS [BANKFEE_ACCOUNT], 
+    [V_Bank_Income].[BALANCE_CHARGES] AS [BALANCE_CHARGES]
+    FROM [dbo].[V_Bank_Income] AS [V_Bank_Income]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_BankAccountMaster" EntityType="Self.V_BankAccountMaster" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_BankAccountMaster].[AccountID] AS [AccountID], 
+    [V_BankAccountMaster].[IBANAccountNo] AS [IBANAccountNo], 
+    [V_BankAccountMaster].[Customer_FirstName] AS [Customer_FirstName], 
+    [V_BankAccountMaster].[Customer_LastName] AS [Customer_LastName], 
+    [V_BankAccountMaster].[CAddress1] AS [CAddress1], 
+    [V_BankAccountMaster].[CAddress2] AS [CAddress2], 
+    [V_BankAccountMaster].[CCity] AS [CCity], 
+    [V_BankAccountMaster].[CZipcode] AS [CZipcode], 
+    [V_BankAccountMaster].[CCountry] AS [CCountry], 
+    [V_BankAccountMaster].[Cemail] AS [Cemail], 
+    [V_BankAccountMaster].[CPhone] AS [CPhone], 
+    [V_BankAccountMaster].[Balance] AS [Balance], 
+    [V_BankAccountMaster].[AccDateCreated] AS [AccDateCreated]
+    FROM [dbo].[V_BankAccountMaster] AS [V_BankAccountMaster]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NL_BankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACCTransaction">
+          <Key>
+            <PropertyRef Name="CTransID" />
+          </Key>
+          <Property Name="CTransID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CTransType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CAmount" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="CAccountNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CDateCreated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BankAccountMaster">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IBANAccountNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer_FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CZipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cemail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="AccDateCreated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="NL_BankEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACCTransactions" EntityType="Self.ACCTransaction" />
+          <EntitySet Name="BankAccountMasters" EntityType="Self.BankAccountMaster" />
+          <EntitySet Name="BANK_INCOME" EntityType="NL_BankModel.BANK_INCOME" />
+          <EntitySet Name="V_ACCTransactions" EntityType="NL_BankModel.V_ACCTransactions" />
+          <EntitySet Name="V_Bank_Income" EntityType="NL_BankModel.V_Bank_Income" />
+          <EntitySet Name="V_BankAccountMaster" EntityType="NL_BankModel.V_BankAccountMaster" />
+          <EntitySet Name="Users" EntityType="NL_BankModel.User" />
+          <EntitySet Name="sysdiagrams" EntityType="NL_BankModel.sysdiagram" />
+        </EntityContainer>
+        <EntityType Name="BANK_INCOME">
+          <Key>
+            <PropertyRef Name="BANKID" />
+          </Key>
+          <Property Name="BANKID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BANKFEE_ACCOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BALANCE_CHARGES" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="V_ACCTransactions">
+          <Key>
+            <PropertyRef Name="CTransID" />
+            <PropertyRef Name="CTransType" />
+          </Key>
+          <Property Name="CTransID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CTransType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CAmount" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="CAccountNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CDateCreated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="V_Bank_Income">
+          <Key>
+            <PropertyRef Name="BANKID" />
+          </Key>
+          <Property Name="BANKID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BANKFEE_ACCOUNT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BALANCE_CHARGES" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="V_BankAccountMaster">
+          <Key>
+            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="IBANAccountNo" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IBANAccountNo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CZipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cemail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="AccDateCreated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_FNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USER_LNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IBANAccountNo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NL_BankModelStoreContainer" CdmEntityContainer="NL_BankEntities">
+          <EntitySetMapping Name="ACCTransactions">
+            <EntityTypeMapping TypeName="NL_BankModel.ACCTransaction">
+              <MappingFragment StoreEntitySet="ACCTransactions">
+                <ScalarProperty Name="CTransID" ColumnName="CTransID" />
+                <ScalarProperty Name="CTransType" ColumnName="CTransType" />
+                <ScalarProperty Name="CAmount" ColumnName="CAmount" />
+                <ScalarProperty Name="CAccountNo" ColumnName="CAccountNo" />
+                <ScalarProperty Name="CDateCreated" ColumnName="CDateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankAccountMasters">
+            <EntityTypeMapping TypeName="NL_BankModel.BankAccountMaster">
+              <MappingFragment StoreEntitySet="BankAccountMaster">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="IBANAccountNo" ColumnName="IBANAccountNo" />
+                <ScalarProperty Name="Customer_FirstName" ColumnName="Customer_FirstName" />
+                <ScalarProperty Name="Customer_LastName" ColumnName="Customer_LastName" />
+                <ScalarProperty Name="CAddress1" ColumnName="CAddress1" />
+                <ScalarProperty Name="CAddress2" ColumnName="CAddress2" />
+                <ScalarProperty Name="CCity" ColumnName="CCity" />
+                <ScalarProperty Name="CZipcode" ColumnName="CZipcode" />
+                <ScalarProperty Name="CCountry" ColumnName="CCountry" />
+                <ScalarProperty Name="CPhone" ColumnName="CPhone" />
+                <ScalarProperty Name="Cemail" ColumnName="Cemail" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="AccDateCreated" ColumnName="AccDateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BANK_INCOME">
+            <EntityTypeMapping TypeName="NL_BankModel.BANK_INCOME">
+              <MappingFragment StoreEntitySet="BANK_INCOME">
+                <ScalarProperty Name="BALANCE_CHARGES" ColumnName="BALANCE_CHARGES" />
+                <ScalarProperty Name="BANKFEE_ACCOUNT" ColumnName="BANKFEE_ACCOUNT" />
+                <ScalarProperty Name="BANKID" ColumnName="BANKID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_ACCTransactions">
+            <EntityTypeMapping TypeName="NL_BankModel.V_ACCTransactions">
+              <MappingFragment StoreEntitySet="V_ACCTransactions">
+                <ScalarProperty Name="CDateCreated" ColumnName="CDateCreated" />
+                <ScalarProperty Name="CAccountNo" ColumnName="CAccountNo" />
+                <ScalarProperty Name="CAmount" ColumnName="CAmount" />
+                <ScalarProperty Name="CTransType" ColumnName="CTransType" />
+                <ScalarProperty Name="CTransID" ColumnName="CTransID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Bank_Income">
+            <EntityTypeMapping TypeName="NL_BankModel.V_Bank_Income">
+              <MappingFragment StoreEntitySet="V_Bank_Income">
+                <ScalarProperty Name="BALANCE_CHARGES" ColumnName="BALANCE_CHARGES" />
+                <ScalarProperty Name="BANKFEE_ACCOUNT" ColumnName="BANKFEE_ACCOUNT" />
+                <ScalarProperty Name="BANKID" ColumnName="BANKID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_BankAccountMaster">
+            <EntityTypeMapping TypeName="NL_BankModel.V_BankAccountMaster">
+              <MappingFragment StoreEntitySet="V_BankAccountMaster">
+                <ScalarProperty Name="AccDateCreated" ColumnName="AccDateCreated" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="CPhone" ColumnName="CPhone" />
+                <ScalarProperty Name="Cemail" ColumnName="Cemail" />
+                <ScalarProperty Name="CCountry" ColumnName="CCountry" />
+                <ScalarProperty Name="CZipcode" ColumnName="CZipcode" />
+                <ScalarProperty Name="CCity" ColumnName="CCity" />
+                <ScalarProperty Name="CAddress2" ColumnName="CAddress2" />
+                <ScalarProperty Name="CAddress1" ColumnName="CAddress1" />
+                <ScalarProperty Name="Customer_LastName" ColumnName="Customer_LastName" />
+                <ScalarProperty Name="Customer_FirstName" ColumnName="Customer_FirstName" />
+                <ScalarProperty Name="IBANAccountNo" ColumnName="IBANAccountNo" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NL_BankModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IBANAccountNo" ColumnName="IBANAccountNo" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="USER_LNAME" ColumnName="USER_LNAME" />
+                <ScalarProperty Name="USER_FNAME" ColumnName="USER_FNAME" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NL_BankModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
