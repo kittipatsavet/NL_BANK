@@ -11,6 +11,12 @@
         After NL Bank Employee created customer bank accounts, the customer can use UserName and Password to do the transactions Themselves at any Kiosk in the NL Bank.
  
  
+ User Name = ADMIN
+ Password =1234     IS USER NAME AND PASSWORD FOR ADMIN
+
+ User Name = CUST1
+ Password =1234     IS USER NAME AND PASSWORD FOR CUSTOMER   OR WE CAN GET ALL USER BY DATABASE dbo.user
+
      
 if you have any problems, you can contact me at email :kittipatsavet@gmail.com
 
